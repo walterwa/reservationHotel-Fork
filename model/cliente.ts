@@ -43,7 +43,7 @@ class Cliente extends Pessoa {
         telefone: string,
         sexo: string,
         nacionalidade: string,
-        qtdPessoas: number
+        qtdPessoas: number,
     ) {
         super(cpf, nome, telefone);
         this.idCliente = idCliente;

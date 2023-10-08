@@ -7,22 +7,22 @@ class Reserva {
    private cartao: Cartao;
    private idReserva: number;
    private statusReserva: string;
-   private dataEntrada: string;
-   private dataSaida: string;
+   private dataEntrada: Date; //Alterando para tipo Date
+   private dataSaida: Date; //Alterando para tipo Date
    private numeroQuarto: number;
    private andarQuarto: number;
-   //private tipoQuarto: string;
+   private tipoQuarto: string; //add tipoQuarto
 
     constructor(
         cliente: Cliente,
         cartao: Cartao,
         idReserva: number,
         statusReserva: string,
-        dataEntrada: string,
-        dataSaida: string,
+        dataEntrada: Date, //type: Date
+        dataSaida: Date, //type: Date
         numeroQuarto: number,
-        andarQuarto: number
-        //tipoQuarto: string
+        andarQuarto: number, //add andarQuarto
+        tipoQuarto: string //add tipoQuarto
     ) {
         this.cliente = cliente;
         this.cartao = cartao;
@@ -32,7 +32,7 @@ class Reserva {
         this.dataSaida = dataSaida;
         this.numeroQuarto = numeroQuarto;
         this.andarQuarto = andarQuarto;
-        //this.tipoQuarto = tipoQuarto;
+        this.tipoQuarto = tipoQuarto; //add tipoQuarto
     }
 
     public getIdReserva(): number {
@@ -51,11 +51,12 @@ class Reserva {
         return this.statusReserva;
     }
 
-    public getDataEntrada(): string {
+    //add get getDataEntrada
+    public getDataEntrada(): Date {
         return this.dataEntrada;
     }
-
-    public getDataSaida(): string {
+    //add get getDataSaida
+    public getDataSaida(): Date {
         return this.dataSaida;
     }
 
@@ -65,6 +66,10 @@ class Reserva {
 
     public getAndarQuarto(): number {
         return this.andarQuarto;
+    }
+    //add get Tipo quarto
+    public getTipoQuarto(): string {
+        return this.tipoQuarto;
     }
 
     set setIdReserva(idReserva: number) {
@@ -83,11 +88,12 @@ class Reserva {
         this.statusReserva = statusReserva;
     }
 
-    set setDataEntrada(dataEntrada: string) {
+    //adição setDataEntrada
+    set setDataEntrada(dataEntrada: Date) {
         this.dataEntrada = dataEntrada;
     }
-
-    set setDataSaida(dataSaida: string) {
+    //adição setDataSaida
+    set setDataSaida(dataSaida: Date) {
         this.dataSaida = dataSaida;
     }
 
@@ -98,6 +104,38 @@ class Reserva {
     set setAndarQuarto(andarQuarto: number) {
         this.andarQuarto = andarQuarto;
     }
+    //add settipoQuarto
+    set setTipoQuarto(tipoQuarto: string) {
+        this.tipoQuarto = tipoQuarto;
+    }
+    //add totalDias
+    totalDias(): number {
+        const tempoMilisegundos = this.dataSaida.getTime() - this.dataEntrada.getTime();    
+        const totalDias = Math.ceil(tempoMilisegundos / (1000 * 3600 * 24));
+        return totalDias;
+    }
+    //add CalcularValorTotalReserva
+    calcularValorTotalReserva(): number {
+        let taxa: number;
+
+        switch(this.tipoQuarto) {
+            case "luxo":
+                taxa = 150;
+                break;
+            case "padrão":
+                taxa = 100;
+                break;
+            case "econômico":
+                taxa = 80;
+                break;
+            default:
+                throw new Error("Tipo de quarto desconhecido!")
+        }
+
+        const totalDias = this.totalDias();
+        const valorTotalReserva = totalDias * taxa;
+        return valorTotalReserva
+    }
 
     public toString(): string {
         return "\nCliente: " + this.cliente.toString() +
@@ -106,8 +144,9 @@ class Reserva {
             "\nData de Entrada: " + this.dataEntrada +
             "\nData de Saída: " + this.dataSaida +
             "\nNúmero do Quarto: " + this.numeroQuarto +
-            "\nAndar do Quarto: " + this.andarQuarto;
-            //"\nTipo do Quarto: " + this.tipoQuarto;
+            "\nAndar do Quarto: " + this.andarQuarto +
+            "\nTipo do Quarto: " + this.tipoQuarto +
+            `\nValor da reserva: R$${this.calcularValorTotalReserva()}`; //adição dessa linha de retorno
     }
 }
 

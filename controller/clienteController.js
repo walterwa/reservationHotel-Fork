@@ -1,23 +1,19 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const cliente_1 = __importDefault(require("../model/cliente"));
-const router = express_1.default.Router();
+var express_1 = require("express");
+var cliente_1 = require("../model/cliente");
+var router = express_1.default.Router();
 // ==========> CRIANDO Cliente <=============
-const clientes = [
+var clientes = [
     new cliente_1.default(1, "12345678910", "João", "999999999", "Masculino", "Brasileiro", 1),
     new cliente_1.default(2, "98765432100", "Maria", "888888888", "Feminino", "Brasileira", 2),
     new cliente_1.default(3, "11122334455", "Pedro", "777777777", "Masculino", "Brasileiro", 3),
-    new cliente_1.default(4, "00124334455", "Flávia", "555555555", "Feminino", "Chilena", 4)
     // Adicione quantos clientes desejar
 ];
 // Rota para criar um novo cliente
-router.post("/cliente/new", (req, res) => {
+router.post("/cliente/new", function (req, res) {
     try {
-        const novoCliente = new cliente_1.default(req.body.idCliente, req.body.cpf, req.body.nome, req.body.telefone, req.body.sexo, req.body.nacionalidade, req.body.qtdPessoas);
+        var novoCliente = new cliente_1.default(req.body.idCliente, req.body.cpf, req.body.nome, req.body.telefone, req.body.sexo, req.body.nacionalidade, req.body.qtdPessoas);
         clientes.push(novoCliente);
         res.status(201).send('Cliente cadastrado com sucesso!!');
     }
@@ -27,13 +23,13 @@ router.post("/cliente/new", (req, res) => {
     }
 });
 // Rota para buscar todos os clientes
-router.get('/cliente', (req, res) => {
+router.get('/cliente', function (req, res) {
     res.send(clientes);
 });
 // Rota para buscar um cliente por ID
-router.get('/cliente/:id', (req, res) => {
-    const id = parseInt(req.params.id);
-    const cliente = clientes.find((cliente) => cliente.getIdCliente() === id);
+router.get('/cliente/:id', function (req, res) {
+    var id = parseInt(req.params.id);
+    var cliente = clientes.find(function (cliente) { return cliente.getIdCliente() === id; });
     if (cliente) {
         res.send(cliente);
     }
@@ -42,15 +38,15 @@ router.get('/cliente/:id', (req, res) => {
     }
 });
 // Rota para atualizar um cliente por ID
-router.put('/cliente/:id', (req, res) => {
+router.put('/cliente/:id', function (req, res) {
     try {
-        const id = parseInt(req.params.id);
-        const index = clientes.findIndex((cliente) => cliente.getIdCliente() === id);
+        var id_1 = parseInt(req.params.id);
+        var index = clientes.findIndex(function (cliente) { return cliente.getIdCliente() === id_1; });
         if (index === -1) {
             res.status(404).send('Cliente não encontrado!');
         }
         else {
-            const cliente = new cliente_1.default(id, req.body.cpf, req.body.nome, req.body.telefone, req.body.sexo, req.body.nacionalidade, req.body.qtdPessoas);
+            var cliente = new cliente_1.default(id_1, req.body.cpf, req.body.nome, req.body.telefone, req.body.sexo, req.body.nacionalidade, req.body.qtdPessoas);
             clientes.splice(index, 1, cliente);
             res.status(204).send();
         }
@@ -61,9 +57,9 @@ router.put('/cliente/:id', (req, res) => {
     }
 });
 // Rota para excluir um cliente por ID
-router.delete('/cliente/:id', (req, res) => {
-    const id = parseInt(req.params.id);
-    const index = clientes.findIndex((cliente) => cliente.getIdCliente() === id);
+router.delete('/cliente/:id', function (req, res) {
+    var id = parseInt(req.params.id);
+    var index = clientes.findIndex(function (cliente) { return cliente.getIdCliente() === id; });
     if (index === -1) {
         res.status(404).send('Cliente não encontrado!');
     }

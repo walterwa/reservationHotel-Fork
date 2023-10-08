@@ -42,7 +42,7 @@ const reservas = [
     new reserva_1.default(new cliente_1.default(1, "12345678910", "João", "999999999", "Masculino", "Brasileiro", 1), new cartao_1.default(1, "12345678910", "João", "999999999", 123456789, 123, "Mastercard"), 1, "Ativa", new Date("2023-10-15"), new Date("2023-10-20"), 1, 1, "econômico"),
     new reserva_1.default(new cliente_1.default(2, "98765432100", "Maria", "888888888", "Feminino", "Brasileira", 2), new cartao_1.default(2, "98765432100", "Maria", "888888888", 987654321, 321, "Visa"), 2, "Ativa",new Date("2023-10-05"),new Date("2023-10-15"), 2, 2, "luxo"),
     new reserva_1.default(new cliente_1.default(3, "11122334455", "Pedro", "777777777", "Masculino", "Brasileiro", 3), new cartao_1.default(3, "11122334455", "Pedro", "777777777", 111223344, 123, "Mastercard"), 3, "Ativa", new Date("2023-10-10"), new Date("2023-10-12"), 3, 3, "padrão"),
-    new reserva_1.default(new cliente_1.default(3, "00124334455", "Flávia", "555555555", "Feminino", "Chilena", 4), new cartao_1.default(4, "11122334499", "Flávia", "555555555", 111223359, 812, "Elo"), 4, "Ativa", new Date("2023-10-04"), new Date("2023-10-09"), 1, 4, "padrão"),
+    new reserva_1.default(new cliente_1.default(3, "00124334455", "Flávia", "555555555", "Feminino", "Chilena", 4), new cartao_1.default(4, "11122334499", "Flávia", "555555555", 111223359, 812, "Elo"), 4, "Ativa", new Date("2023-10-04"), new Date("2023-10-09"), 1, 4, "padrão"), //nova reserva da cliente flávia
 ];
 // Rota para criar uma nova reserva
 router.post("/reserva/new", (req, res) => {

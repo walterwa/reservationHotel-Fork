@@ -11,7 +11,7 @@ const clientes = [
     new cliente_1.default(1, "12345678910", "João", "999999999", "Masculino", "Brasileiro", 1),
     new cliente_1.default(2, "98765432100", "Maria", "888888888", "Feminino", "Brasileira", 2),
     new cliente_1.default(3, "11122334455", "Pedro", "777777777", "Masculino", "Brasileiro", 3),
-    new cliente_1.default(4, "00124334455", "Flávia", "555555555", "Feminino", "Chilena", 4)
+    new cliente_1.default(4, "00124334455", "Flávia", "555555555", "Feminino", "Chilena", 4) //adição de nova cliente
     // Adicione quantos clientes desejar
 ];
 // Rota para criar um novo cliente
